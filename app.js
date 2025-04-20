@@ -2,6 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registroForm');
     const mensajeDiv = document.getElementById('mensaje');
 
+    // Verificar la conexión con Google Apps Script al cargar
+    fetch(CONFIG.API_URL, {
+        method: 'GET',
+        mode: 'cors'
+    }).catch(error => {
+        console.warn('Advertencia de conexión inicial:', error);
+    });
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -28,10 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`Error HTTP: ${response.status}`);
             }
 
-            const data = await response.json();
+            let data;
+            try {
+                data = await response.json();
+            } catch (e) {
+                throw new Error('Error al procesar la respuesta del servidor');
+            }
             
             if (data.success) {
                 mensajeDiv.className = 'success';
@@ -44,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             mensajeDiv.className = 'error';
             mensajeDiv.textContent = 'Error de conexión: ' + error.message;
-            console.error('Error:', error);
+            console.error('Error detallado:', error);
         }
     });
 }); 
