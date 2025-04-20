@@ -24,7 +24,7 @@
 
     <script>
         const CONFIG = {
-            API_URL: 'https://script.google.com/macros/s/AKfycbyIrHt9cvvJE1nwiRk5SBATKUj25-FBQPb3W_b83FUfTGJHttGP4ZP7QzVfEVuH5ZU/exec'
+            API_URL: 'https://script.google.com/macros/s/AKfycbxxTeutGe6uaoC9QO39ZHviE3vqfTAhcOUUpfAbZu3wxoLub6KwtZeaf7-pFIwF4JFK/exec'
         };
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -44,7 +44,7 @@
                 try {
                     const response = await fetch(CONFIG.API_URL, {
                         method: 'POST',
-                        mode: 'no-cors', // Importante para evitar errores de CORS
+                        mode: 'cors', // Importante para evitar errores de CORS
                         headers: {
                             'Content-Type': 'application/json',
                         },
