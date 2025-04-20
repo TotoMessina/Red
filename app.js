@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
+        mensajeDiv.className = '';
+        mensajeDiv.textContent = 'Enviando...';
+
         try {
             const response = await fetch(CONFIG.API_URL, {
                 method: 'POST',
@@ -24,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
 
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json();
             
             if (data.success) {
@@ -36,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             mensajeDiv.className = 'error';
-            mensajeDiv.textContent = 'Error de conexión';
+            mensajeDiv.textContent = 'Error de conexión: ' + error.message;
             console.error('Error:', error);
         }
     });
