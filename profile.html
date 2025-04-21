@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body onload="cargarPerfil()">
+  <header>
+    <h1>Mi Perfil</h1>
+    <a href="index.html">Volver</a>
+  </header>
+  <div class="container">
+    <div>
+      <input id="nombre" placeholder="Nombre">
+      <textarea id="bio" placeholder="Bio"></textarea>
+      <button onclick="guardarPerfil()">Guardar</button>
+    </div>
+    <h3>Mis publicaciones</h3>
+    <div id="mis-posts"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="scripts/supabase.js"></script>
+  <script src="scripts/profile.js"></script>
+</body>
+</html>
