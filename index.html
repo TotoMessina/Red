@@ -1,23 +1,41 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feed</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>Red Social</title>
 </head>
-<body onload="cargarFeed()">
+<body>
   <header>
-    <h1>Mi Red Social</h1>
-    <a href="profile.html">Perfil</a>
+    <h1>Red Social</h1>
   </header>
-  <div class="container">
-    <textarea id="contenido" placeholder="¿Qué estás pensando?"></textarea>
-    <button onclick="publicar()">Publicar</button>
-    <div id="feed"></div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <div class="container" id="main-content"></div>
   <script src="scripts/supabase.js"></script>
+  <script src="scripts/utils.js"></script>
   <script src="scripts/feed.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const usuario = JSON.parse(localStorage.getItem("usuario"));
+      const main = document.getElementById("main-content");
+      if (!usuario) {
+        main.innerHTML = `
+          <h2>Bienvenido a la Red Social</h2>
+          <p>Registrate o iniciá sesión para empezar a publicar.</p>
+          <a href="register.html"><button>Registrarse</button></a>
+          <a href="login.html"><button>Iniciar sesión</button></a>
+        `;
+      } else {
+        main.innerHTML = `
+          <textarea id="contenido" placeholder="¿Qué estás pensando?"></textarea>
+          <button onclick="publicar()">Publicar</button>
+          <h2>Feed</h2>
+          <div id="feed"></div>
+        `;
+        cargarFeed();
+      }
+    });
+  </script>
 </body>
 </html>

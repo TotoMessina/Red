@@ -1,20 +1,28 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>Iniciar sesión</title>
 </head>
 <body>
-  <div class="container">
-    <h2>Iniciar sesión</h2>
-    <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Contraseña">
-    <button onclick="login(email.value, password.value)">Entrar</button>
-    <a href="register.html">¿No tenés cuenta?</a>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <h1>Iniciar sesión</h1>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="contraseña" placeholder="Contraseña" required />
+    <button type="submit">Ingresar</button>
+  </form>
   <script src="scripts/supabase.js"></script>
   <script src="scripts/auth.js"></script>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const contraseña = document.getElementById("contraseña").value;
+      await login(email, contraseña);
+    });
+  </script>
 </body>
 </html>

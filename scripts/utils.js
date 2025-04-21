@@ -1,3 +1,4 @@
+// utils.js
 function verificarLogin() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     if (!usuario) {

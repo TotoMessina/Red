@@ -1,3 +1,4 @@
+// feed.js
 async function cargarFeed() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const contenedor = document.getElementById("feed");

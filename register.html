@@ -1,21 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles/style.css"/>
   <title>Registro</title>
-  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Registro</h2>
-    <input id="nombre" placeholder="Nombre">
-    <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Contraseña">
-    <button onclick="registrar(nombre.value, email.value, password.value)">Registrarse</button>
-    <a href="login.html">¿Ya tenés cuenta?</a>
-  </div>
+  <h1>Registrarse</h1>
+  <form id="registroForm">
+    <input type="text" id="nombre" placeholder="Nombre" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="contraseña" placeholder="Contraseña" required />
+    <button type="submit">Registrarse</button>
+  </form>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="scripts/supabase.js"></script>
   <script src="scripts/auth.js"></script>
+  <script>
+    document.getElementById("registroForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const contraseña = document.getElementById("contraseña").value;
+      await registrar(nombre, email, contraseña);
+    });
+  </script>
 </body>
 </html>

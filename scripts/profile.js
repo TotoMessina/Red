@@ -1,3 +1,4 @@
+// profile.js
 async function cargarPerfil() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     document.getElementById("nombre").value = usuario.nombre;

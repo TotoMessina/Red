@@ -1,3 +1,4 @@
+// auth.js
 async function registrar(nombre, email, contraseña) {
     const { data, error } = await supabase
       .from("usuarios")
